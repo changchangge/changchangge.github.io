@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="JavaScript,">
+  <meta name="keywords" content="HTTP,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="今天开始准备面试了，emmmm，感觉自己挺菜的，但是努力吧，努力一定有收获的。 原始类型原始类型有：boolean，null，undefined，string（不可变），number（浮点数）、symbol其中原始类型存储的是值，是没有函数可以调用的，例如underfined.toString()会报错一样。 对象类型在JS中，除了原始类型其它的都是对象类型了。它们的区别在于：原始类型存储的是值，">
-<meta name="keywords" content="JavaScript">
+<meta name="description" content="HTTP状态码负责表示客户端HTTP请求的返回结果、标记服务器端的处理是否正常、通知出现的错误等工作。可以把状态码分为以下几类：    范围 类别 原因短句     1XX 信息性状态码 接受的请求正在处理   2XX 成功状态码 请求正常处理完毕   3XX 重定向状态码 需要进行附加操作以完成请求   4XX 客户端错误代码 服务器无法处理请求   5XX 服务器错误状态码 服务器处理请求出错">
+<meta name="keywords" content="HTTP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端面试之js部分总结（一）">
-<meta property="og:url" content="http://yoursite.com/2019/02/17/2019-02-17/index.html">
+<meta property="og:title" content="HTTP状态码汇总">
+<meta property="og:url" content="http://yoursite.com/2019/02/19/http/index.html">
 <meta property="og:site_name" content="厂厂的博客">
-<meta property="og:description" content="今天开始准备面试了，emmmm，感觉自己挺菜的，但是努力吧，努力一定有收获的。 原始类型原始类型有：boolean，null，undefined，string（不可变），number（浮点数）、symbol其中原始类型存储的是值，是没有函数可以调用的，例如underfined.toString()会报错一样。 对象类型在JS中，除了原始类型其它的都是对象类型了。它们的区别在于：原始类型存储的是值，">
+<meta property="og:description" content="HTTP状态码负责表示客户端HTTP请求的返回结果、标记服务器端的处理是否正常、通知出现的错误等工作。可以把状态码分为以下几类：    范围 类别 原因短句     1XX 信息性状态码 接受的请求正在处理   2XX 成功状态码 请求正常处理完毕   3XX 重定向状态码 需要进行附加操作以完成请求   4XX 客户端错误代码 服务器无法处理请求   5XX 服务器错误状态码 服务器处理请求出错">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-19T11:29:58.752Z">
+<meta property="og:updated_time" content="2019-02-19T11:29:28.945Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端面试之js部分总结（一）">
-<meta name="twitter:description" content="今天开始准备面试了，emmmm，感觉自己挺菜的，但是努力吧，努力一定有收获的。 原始类型原始类型有：boolean，null，undefined，string（不可变），number（浮点数）、symbol其中原始类型存储的是值，是没有函数可以调用的，例如underfined.toString()会报错一样。 对象类型在JS中，除了原始类型其它的都是对象类型了。它们的区别在于：原始类型存储的是值，">
+<meta name="twitter:title" content="HTTP状态码汇总">
+<meta name="twitter:description" content="HTTP状态码负责表示客户端HTTP请求的返回结果、标记服务器端的处理是否正常、通知出现的错误等工作。可以把状态码分为以下几类：    范围 类别 原因短句     1XX 信息性状态码 接受的请求正在处理   2XX 成功状态码 请求正常处理完毕   3XX 重定向状态码 需要进行附加操作以完成请求   4XX 客户端错误代码 服务器无法处理请求   5XX 服务器错误状态码 服务器处理请求出错">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/17/2019-02-17/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/19/http/">
 
 
 
 
 
-  <title>前端面试之js部分总结（一） | 厂厂的博客</title>
+  <title>HTTP状态码汇总 | 厂厂的博客</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/17/2019-02-17/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/19/http/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="changchang">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">前端面试之js部分总结（一）</h1>
+          <h1 class="post-title" itemprop="name headline">HTTP状态码汇总</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-17T23:40:46+08:00">
-                2019-02-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-19T19:28:32+08:00">
+                2019-02-19
               </time>
             
 
@@ -352,9 +352,49 @@
       
 
       
-        <p>今天开始准备面试了，emmmm，感觉自己挺菜的，但是努力吧，努力一定有收获的。</p>
-<h4 id="原始类型"><a href="#原始类型" class="headerlink" title="原始类型"></a>原始类型</h4><p>原始类型有：boolean，null，undefined，string（不可变），number（浮点数）、symbol其中原始类型存储的是值，是没有函数可以调用的，例如underfined.toString()会报错一样。</p>
-<h4 id="对象类型"><a href="#对象类型" class="headerlink" title="对象类型"></a>对象类型</h4><p>在JS中，除了原始类型其它的都是对象类型了。它们的区别在于：原始类型存储的是值，对象类型存储的是地址（类似于C语言中的指针）。<br>例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a=[];</span><br><span class="line"><span class="keyword">const</span> b=a;</span><br><span class="line">b.push(<span class="number">1</span>);</span><br><span class="line">a;<span class="comment">//[1]</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">person</span>)</span>&#123;</span><br><span class="line">  person.age=<span class="number">18</span>;</span><br><span class="line">  person=&#123;<span class="attr">name</span>:<span class="string">"ccg"</span>,age=<span class="number">20</span>&#125;;</span><br><span class="line">  <span class="keyword">return</span> person;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> p1=&#123;<span class="attr">name</span>:<span class="string">"yashi"</span>,age=<span class="number">19</span>&#125;;</span><br><span class="line"><span class="keyword">const</span> p2=test(p1);</span><br><span class="line"><span class="comment">//p1=&#123;name:"yashi",age=18&#125;</span></span><br><span class="line"><span class="comment">//p2=&#123;name:"ccg",age=20&#125;</span></span><br></pre></td></tr></table></figure></p>
+        <p>HTTP状态码负责表示客户端HTTP请求的返回结果、标记服务器端的处理是否正常、通知出现的错误等工作。<br>可以把状态码分为以下几类：</p>
+<table>
+<thead>
+<tr>
+<th>范围</th>
+<th>类别</th>
+<th>原因短句</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1XX</td>
+<td>信息性状态码</td>
+<td>接受的请求正在处理</td>
+</tr>
+<tr>
+<td>2XX</td>
+<td>成功状态码</td>
+<td>请求正常处理完毕</td>
+</tr>
+<tr>
+<td>3XX</td>
+<td>重定向状态码</td>
+<td>需要进行附加操作以完成请求</td>
+</tr>
+<tr>
+<td>4XX</td>
+<td>客户端错误代码</td>
+<td>服务器无法处理请求</td>
+</tr>
+<tr>
+<td>5XX</td>
+<td>服务器错误状态码</td>
+<td>服务器处理请求出错</td>
+</tr>
+</tbody>
+</table>
+<p>只要遵循状态码的类别，即使改变RF2616中定义的状态码，或者服务端自行创建状态码都是没有问题的。<br>接下来介绍具有代表性的状态码。</p>
+<h4 id="1XX信息"><a href="#1XX信息" class="headerlink" title="1XX信息"></a>1XX信息</h4><p>100：Continue，收到部分请求，应该继续请求<br>101：Switch protocols，客户要求服务器根据请求转换HTTP协议版本</p>
+<h4 id="2XX成功"><a href="#2XX成功" class="headerlink" title="2XX成功"></a>2XX成功</h4><p>200：OK，服务器正常处理请求<br>201：Created，提示知道新文件的URL<br>202：Accepted，请求已经接受，但没有完成处理<br>203：Non-Authoritative Information，服务器成功处理事务，只是实体包含的信息可能不是来自原始服务器，而是来自资源的副本<br>204：No Content，服务器接受的请求以成功受理，但是返回的响应报文中不包含实体的主体部分，另外，也不允许返回任何实体的主体<br>205：Reset Content，没有新的内容，但浏览器应该重置它所显示的内容。用来强制浏览器清除表单输入内容<br>206：Partial Content，客户端进行了范围请求，而服务器成功执行了这部分的GET请求 </p>
+<h4 id="3XX重定向"><a href="#3XX重定向" class="headerlink" title="3XX重定向"></a>3XX重定向</h4><p>300：Multiple Choices，客户请求的文档可以在多个位置找到，这些位置已经在返回的文档内列出。如果服务器要提出优先选择，则应该在Location应答头指明<br>301：Moved Permanently，永久重定向，该状态码表示请求的资源已被分配了新的URI<br>302：Found，临时重定向，客户端可以使用Location首部给出的URL对资源进行临时定位<br>303：See Other，由于请求对应的资源存在另一个URI，应使用GET方法定向获取请求资源<br>304：Not Modified，客户端发送附带条件的请求时，服务器端允许请求访问资源，但发生条件没有满足条件（服务器资源未改变，可直接使用客户端未过期的缓存）<br>305：Use Proxy，通过代理访问资源，代理的位置在Location首部中被提及<br>307：Temporary Redirect，临时重定向，与302有相同含义。但307会遵照浏览器标准，不会从POST变成GET，302不一定</p>
+<h4 id="4XX客户端错误"><a href="#4XX客户端错误" class="headerlink" title="4XX客户端错误"></a>4XX客户端错误</h4><p>400：Bad request，请求报文存在语法错误<br>401: Unauthorized，发送的请求需要有通过HTTP认证的认证信息。另外若之前已经进行过1次请求，则表示用户认证失败<br>403：Forbidden，对资源的访问被服务器拒绝了<br>404：Not Found，服务器上没有找到请求资源。除此之外，也可以在服务器拒绝请求且不想说明理由时使用<br>405：Method Not Allowed，不允许使用的方法，请求中有一个不支持的方法，响应中应该包含一个Allow首部，已告知客户端所请求的资源支持的方法<br>406：Not Acceptable，无法接受，指定的资源已经找到，但它的MIME类型和客户在Accpet头中所指定的不兼容<br>407：Proxy Authentication Required，类似于401，表示客户要进行代理认证<br>408：Request Timeout，在服务器许可的等待时间内，客户一直没有发出任何请求。客户可以在以后重复同一请求<br>409：Conflict，发出的请求在资源上造成了一些冲突，通常与PUT请求有关<br>410：Gone，所请求的文档已经不再可用，而且服务器不知道应该重定向到哪一个地址。它和404的不同在于，返回407表示文档永久地离开了指定的位置，而 404表示由于未知的原因文档不可用<br>411：Length Require，要求长度指示，服务器要求请求报文中包含Content-Length首部，没有该首部则返回该代码<br>412：Precondition Failed，前提条件失败，客户端发起条件请求，服务器无法满足某个条件，则返回该代码<br>413：Request Entity Too Large，目标文档的大小超过服务器当前愿意处理的大小。如果服务器认为自己能够稍后再处理该请求，则应该提供一个Retry-After头<br>414：Request URI Too long，URI太长<br>415：Unsuportted Media Type，不支持的媒体类型<br>416：Requested Range Not Satisfiable，服务器不能满足客户在请求中指定的Range头<br>417：Expectation Failed，服务器遇到未知情况，不能完成客户的请求</p>
+<h4 id="5XX服务端错误"><a href="#5XX服务端错误" class="headerlink" title="5XX服务端错误"></a>5XX服务端错误</h4><p>500：Internal Server Error，服务器端在执行请求时发生错误。也有可能是Web应用存在的bug或某些临时的故障<br>501：Not Implemented，服务器无法满足客户端请求的某个功能<br>502：Bad Gateway，服务器作为网关或者代理时，为了完成请求访问下一个服务器，但该服务器返回了非法的应答<br>503：Service Unavaiable，服务器暂时处于超负荷状态或者正在进行停机维护，现在无法处理请求。如果事先得知解除以上情况所需要的时间，最好写入Retry-After首部字段再返回给客户端<br>504：Gateway Timeout，由作为代理或网关的服务器使用，表示不能及时地从远程服务器获得应答。，与408类似<br>505：HTTP Version Not Supported，服务器不支持请求的HTTP版本</p>
 
       
       <div>
@@ -381,7 +421,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"> JavaScript</i></a>
+            <a href="/tags/HTTP/" rel="tag"><i class="fa fa-tag"> HTTP</i></a>
           
         </div>
       
@@ -394,15 +434,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/02/19/websocket/" rel="next" title="简单使用WebSocket">
+                <i class="fa fa-chevron-left"></i> 简单使用WebSocket
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/18/jsonp/" rel="prev" title="实现一个JSONP">
-                实现一个JSONP <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -546,7 +586,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#原始类型"><span class="nav-number">1.</span> <span class="nav-text">原始类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象类型"><span class="nav-number">2.</span> <span class="nav-text">对象类型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1XX信息"><span class="nav-number">1.</span> <span class="nav-text">1XX信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2XX成功"><span class="nav-number">2.</span> <span class="nav-text">2XX成功</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3XX重定向"><span class="nav-number">3.</span> <span class="nav-text">3XX重定向</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4XX客户端错误"><span class="nav-number">4.</span> <span class="nav-text">4XX客户端错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5XX服务端错误"><span class="nav-number">5.</span> <span class="nav-text">5XX服务端错误</span></a></li></ol></div>
             
 
           </div>
