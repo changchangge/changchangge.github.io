@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="-WebSocket,">
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="路漫漫其修远兮，吾将上下而求索">
-<meta property="og:type" content="website">
-<meta property="og:title" content="厂厂的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="WebSocket介绍WebSocket是应用层协议，基于TCP协议，WebSocket是一种双向的通信协议，在建立后服务端和客户端之间能相互交流。原生的WebSocket写法繁琐麻烦，通常使用socket.io进行WebSocket服务。 实现服务端12345678let WebSocket=require(&apos;ws&apos;);let wss=new WebSocket.Server(&amp;#123;por">
+<meta name="keywords" content="-WebSocket">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单使用WebSocket">
+<meta property="og:url" content="http://yoursite.com/2019/02/19/websocket/index.html">
 <meta property="og:site_name" content="厂厂的博客">
-<meta property="og:description" content="路漫漫其修远兮，吾将上下而求索">
+<meta property="og:description" content="WebSocket介绍WebSocket是应用层协议，基于TCP协议，WebSocket是一种双向的通信协议，在建立后服务端和客户端之间能相互交流。原生的WebSocket写法繁琐麻烦，通常使用socket.io进行WebSocket服务。 实现服务端12345678let WebSocket=require(&apos;ws&apos;);let wss=new WebSocket.Server(&amp;#123;por">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-19T07:14:59.244Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="厂厂的博客">
-<meta name="twitter:description" content="路漫漫其修远兮，吾将上下而求索">
+<meta name="twitter:title" content="简单使用WebSocket">
+<meta name="twitter:description" content="WebSocket介绍WebSocket是应用层协议，基于TCP协议，WebSocket是一种双向的通信协议，在建立后服务端和客户端之间能相互交流。原生的WebSocket写法繁琐麻烦，通常使用socket.io进行WebSocket服务。 实现服务端12345678let WebSocket=require(&apos;ws&apos;);let wss=new WebSocket.Server(&amp;#123;por">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/19/websocket/">
 
 
 
 
 
-  <title>厂厂的博客</title>
+  <title>简单使用WebSocket | 厂厂的博客</title>
   
 
 
@@ -143,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -247,9 +248,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -279,9 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/19/websocket/" itemprop="url">简单使用WebSocket</a></h1>
+          <h1 class="post-title" itemprop="name headline">简单使用WebSocket</h1>
         
 
         <div class="post-meta">
@@ -353,19 +352,13 @@
       
 
       
-        
-          
-          WebSocket介绍WebSocket是应用层协议，基于TCP协议，WebSocket是一种双向的通信协议，在建立后服务端和客户端之间能相互交流。原生的WebSocket写法繁琐麻烦，通常使用socket.io进行WebSocket服务。
-实现服务端12345678let WebSocket=re
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/19/websocket/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <h4 id="WebSocket介绍"><a href="#WebSocket介绍" class="headerlink" title="WebSocket介绍"></a>WebSocket介绍</h4><p>WebSocket是应用层协议，基于TCP协议，WebSocket是一种双向的通信协议，在建立后服务端和客户端之间能相互交流。<br>原生的WebSocket写法繁琐麻烦，通常使用socket.io进行WebSocket服务。</p>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><h4 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> WebSocket=<span class="built_in">require</span>(<span class="string">'ws'</span>);</span><br><span class="line"><span class="keyword">let</span> wss=<span class="keyword">new</span> WebSocket.Server(&#123;<span class="attr">port</span>:<span class="number">3000</span>&#125;);</span><br><span class="line">wss.on(<span class="string">'connection'</span>,(ws)=&gt;&#123;</span><br><span class="line">    ws.on(<span class="string">'message'</span>,(data)=&gt;&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(data);</span><br><span class="line">        ws.send(<span class="string">'测试'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>服务端使用了ws，创建了Server类，实现了WebSocket通信。</p>
+<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div&gt;test&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;script&gt;</span></span><br><span class="line"><span class="regexp">        let socket = new WebSocket('ws:/</span><span class="regexp">/localhost:3000');</span></span><br><span class="line"><span class="regexp">        socket.onopen = function () &#123;</span></span><br><span class="line"><span class="regexp">          socket.send('我爱你');/</span><span class="regexp">/向服务器发送数据</span></span><br><span class="line"><span class="regexp">        &#125;</span></span><br><span class="line"><span class="regexp">        socket.onmessage = function (e) &#123;</span></span><br><span class="line"><span class="regexp">          console.log(e.data);/</span><span class="regexp">/接收服务器返回的数据</span></span><br><span class="line"><span class="regexp">        &#125;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>script&gt;</span><br><span class="line">&lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;html&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="安全问题"><a href="#安全问题" class="headerlink" title="安全问题"></a>安全问题</h4><p>WebSocket作为一种通信协议被引入Web应用中，并不会解决Web应用中存在的安全问题，<br>因此WebSocket应用的安全实现需要由开发者或者服务端负责。</p>
+<p>目前笔者在安全方面认识暂时不足，等了解充分后再回来补坑。</p>
+
       
     </div>
     
@@ -380,311 +373,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/18/jsonp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="changchang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="厂厂的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/18/jsonp/" itemprop="url">实现一个JSONP</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-18T23:01:27+08:00">
-                2019-02-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/WebSocket/" rel="tag"># -WebSocket</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-          同源策略同源策略是一种约定，指的是协议、域名和端口三者相同，它是浏览器最核心也是最基本的安全功能。缺少这个功能，就容易受到XSS、CSRF的攻击。同源策略的限制内容：（一）Cookies、LocalStrange、IndexedDB等存储性的内容。（二）DOM节点。（三）AJAX请求发送后，结果被浏
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/18/jsonp/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/18/jsonp/" rel="next" title="实现一个JSONP">
+                <i class="fa fa-chevron-left"></i> 实现一个JSONP
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/17/2019-02-17/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="changchang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="厂厂的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/17/2019-02-17/" itemprop="url">前端面试之js部分总结（一）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-17T23:40:46+08:00">
-                2019-02-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          今天开始准备面试了，emmmm，感觉自己挺菜的，但是努力吧，努力一定有收获的。
-原始类型原始类型有：boolean，null，undefined，string（不可变），number（浮点数）、symbol其中原始类型存储的是值，是没有函数可以调用的，例如underfined.toString()会
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/17/2019-02-17/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -694,10 +412,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -705,6 +424,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -725,8 +448,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -798,6 +530,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#WebSocket介绍"><span class="nav-number">1.</span> <span class="nav-text">WebSocket介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务端"><span class="nav-number">3.</span> <span class="nav-text">服务端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端"><span class="nav-number">4.</span> <span class="nav-text">客户端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全问题"><span class="nav-number">5.</span> <span class="nav-text">安全问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -938,6 +686,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
