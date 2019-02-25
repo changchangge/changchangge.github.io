@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="TCP,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="TCP三次握手和四次握手 画图描述  图 https://blog.csdn.net/ZWE7616175/article/details/80432486 ack和seq的值  SYN seq=x ACK=x+1   未就绪队列（SYN队列）  发过来的SYN，如果ACCEPT队列未满则放入SYN队列，并返回SYN+ACK 如果发来ACK时，ACCEPT队列已满了，丢弃ACK，对端重发ACK 如">
+<meta name="keywords" content="TCP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络之TCP总结">
+<meta property="og:url" content="http://yoursite.com/2019/02/25/2019-02-25(2)/index.html">
+<meta property="og:site_name" content="厂厂的博客">
+<meta property="og:description" content="TCP三次握手和四次握手 画图描述  图 https://blog.csdn.net/ZWE7616175/article/details/80432486 ack和seq的值  SYN seq=x ACK=x+1   未就绪队列（SYN队列）  发过来的SYN，如果ACCEPT队列未满则放入SYN队列，并返回SYN+ACK 如果发来ACK时，ACCEPT队列已满了，丢弃ACK，对端重发ACK 如">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-25T10:46:22.629Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络之TCP总结">
+<meta name="twitter:description" content="TCP三次握手和四次握手 画图描述  图 https://blog.csdn.net/ZWE7616175/article/details/80432486 ack和seq的值  SYN seq=x ACK=x+1   未就绪队列（SYN队列）  发过来的SYN，如果ACCEPT队列未满则放入SYN队列，并返回SYN+ACK 如果发来ACK时，ACCEPT队列已满了，丢弃ACK，对端重发ACK 如">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/25/2019-02-25(2)/">
+
+
+
+
+
+  <title>网络之TCP总结 | 厂厂的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">厂厂的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    <h1 class="site-subtitle" itemprop="description">
+      路漫漫其修远兮，吾将上下而求索
+    </h1>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/25/2019-02-25(2)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="changchang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/boy.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="厂厂的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">网络之TCP总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-25T18:42:34+08:00">
+                2019-02-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络/" itemprop="url" rel="index">
+                    <span itemprop="name">网络</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><h3 id="三次握手和四次握手"><a href="#三次握手和四次握手" class="headerlink" title="三次握手和四次握手"></a>三次握手和四次握手</h3><ul>
+<li><p>画图描述</p>
+<ul>
+<li>图</li>
+<li><a href="https://blog.csdn.net/ZWE7616175/article/details/80432486" target="_blank" rel="noopener">https://blog.csdn.net/ZWE7616175/article/details/80432486</a></li>
+<li><p>ack和seq的值</p>
+<ul>
+<li>SYN seq=x</li>
+<li>ACK=x+1</li>
+</ul>
+</li>
+<li><p>未就绪队列（SYN队列）</p>
+<ul>
+<li>发过来的SYN，如果ACCEPT队列未满则放入SYN队列，并返回SYN+ACK</li>
+<li>如果发来ACK时，ACCEPT队列已满了，丢弃ACK，对端重发ACK</li>
+<li>如果SYN队列中SYN_REVD状态超时ACCEPT队列仍未空，则丢弃该连接</li>
+</ul>
+</li>
+<li><p>就绪队列（ACCEPT队列）</p>
+<ul>
+<li>应用程序通过accept取走连接</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>三次挥手和四次握手的原因</p>
+<ul>
+<li><p>三次握手</p>
+<ul>
+<li><p>三次的原因：避免服务端传输问题，导致客户端一直重传，然后服务端建立大量的无效链接</p>
+<ul>
+<li><p>第二个SYN的作用</p>
+<ul>
+<li>如果第一个SYN阻塞了，客户端又超时重发了一个SYN。这时候之前的阻塞的SYN也到达了服务端。然而其实这个被阻塞的SYN已经无效了。如果正常返回则会监听无用的请求。可以发送一个SYN询问客户端之前的请求是否正确</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>服务端无法立刻建立连接</p>
+<ul>
+<li>返回RST报文表示重置</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>四次挥手</p>
+<ul>
+<li>ACK和FIN分开，因为FIN前可能还有内容要发送</li>
+<li><p>进入TIME_WAIT后等待2MSL后无回复则变成CLOSED</p>
+<ul>
+<li>MSL（Maximum Segment Lifetime）保文最大生存时间：超过这个时间的报文将被抛弃</li>
+<li>RFC793规定MSL为两分钟，实际应用常用30s、1min、2min等</li>
+<li>为什么是2MSL：怕对方ACK包没收到，对方超时发来FIN包，来回最大时间是2MSL</li>
+</ul>
+</li>
+<li><p>TIME_WAIT状态存在的原因</p>
+<ul>
+<li><p>1.可靠地实现了TCP全双工连接的终止</p>
+<ul>
+<li>维持该连接的状态以便重发丢死的ACK</li>
+</ul>
+</li>
+<li><p>2.使旧的数据包在网络中因过期而消失</p>
+<ul>
+<li>一条TCP连接由四元组（ip，port）作为唯一标识。如果关闭连接后迅速以同样的四元祖建立新连接，TCP协议栈无法区分新连接，可能被当成正常数据接受并上传至应用层。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>网络中出现大量TIME_WAIT状态的危害</p>
+<ul>
+<li>socket关闭时TIME_WAIT状态保持1-4分钟（视实际的MSL而定）</li>
+<li>快速打开关闭大量连接时会积累大量socket。而本地端口数量有限，很难再建立新的对外连接</li>
+<li><p>如何消除</p>
+<ul>
+<li>1.改为长连接。代价较大，长连接太多会导致服务器性能问题</li>
+<li><p>2.客户端机器打开tcp_tw_recycle和tcp_timestamps选项</p>
+<ul>
+<li>tcp_tw_recycle:开启TCP连接中TIME_WAIT sockets的快速回收</li>
+</ul>
+</li>
+<li><p>3.客户端机器打开tcp_tw_reuse和tcp_timestamps</p>
+<ul>
+<li>tcp_tw_reuse:允许TIME_WAIT sockets重新用于新的TCP连接</li>
+</ul>
+</li>
+<li><p>4.客户端程序中设置socket的SO_LONGER选项</p>
+</li>
+<li><p>5.客户端机器设置tcp_max_tw_buckets为一个很小的值</p>
+<ul>
+<li>该值用于防止Dos攻击，不应该人工减少，甚至应该增加。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="建立连接后如何保持连接（检测未断开）"><a href="#建立连接后如何保持连接（检测未断开）" class="headerlink" title="建立连接后如何保持连接（检测未断开）"></a>建立连接后如何保持连接（检测未断开）</h3><ul>
+<li><p>1.TCP协议层的Keepalive机制</p>
+<ul>
+<li>连接闲置一段时间后（ 默认两个小时），TCP协议向对方发送一个keepalive探针包（没数据）。</li>
+<li>对方收到后，如一切正常应回复ACK</li>
+<li>出错则回复RST</li>
+<li>没回复则重发，多次重发没回应则视作断开</li>
+</ul>
+</li>
+<li><p>2.应用层自己实现的HeartBeat心跳bao</p>
+<ul>
+<li>客户端定时发送一个小包，告诉服务端自己还存活</li>
+</ul>
+</li>
+</ul>
+<h3 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h3><ul>
+<li>防止过多数据注入到网络中，全局性，涉及所有主机，路由器</li>
+<li><p>方法</p>
+<ul>
+<li><p>慢启动</p>
+<ul>
+<li><p>不知道网络状态时，试探性把拥塞窗口cwnd设为1，然后逐次翻倍。达到门槛时，转为拥塞避免算法</p>
+<ul>
+<li>门槛无规定值，为任意大值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>拥塞避免算法</p>
+<ul>
+<li><p>加法增加</p>
+<ul>
+<li>发生拥塞时（确认超时），减半，重新启动慢启动</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>快重传</p>
+<ul>
+<li><p>接受方一旦收到失效报文就发出对失效报文前一个报文的重复确认，一旦收到三个重复确认就马上重发（不要等确认超时）</p>
+<ul>
+<li>吞吐量20%</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>快恢复</p>
+<ul>
+<li>发生阻塞时不重新从1开始慢启动，而是从慢启动阀值开始加法增加</li>
+</ul>
+</li>
+<li><p>图解</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h3><ul>
+<li><p>滑动窗口机制</p>
+<ul>
+<li>发送、接收方都有缓冲区</li>
+<li>发送窗口即缓冲区中允许被发送的区间</li>
+<li><p>动态调整窗口大小</p>
+<ul>
+<li>返回窗口为0，说明要等接收方的缓冲区清空才能继续接收</li>
+</ul>
+</li>
+<li><p>窗口过小</p>
+<ul>
+<li>影响效率，发一个报文等一个ACK</li>
+</ul>
+</li>
+<li><p>窗口过大</p>
+<ul>
+<li>网络易堵塞，容易造成接受端缓存不足溢出丢包-&gt;多次重复发送数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>考虑传输效率</p>
+<ul>
+<li><p>Nagle算法</p>
+<ul>
+<li>只允许网络中有一个小包，避免发送大量小包（协议头非常大）造成拥塞</li>
+<li><p>实质指责为数据累积，门槛有三</p>
+<ul>
+<li>1.缓冲区超过阀值</li>
+<li>2.等待超过一定时间（一般200ms）</li>
+<li>3.紧急数据发送</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="糊涂窗口综合症"><a href="#糊涂窗口综合症" class="headerlink" title="糊涂窗口综合症"></a>糊涂窗口综合症</h3><ul>
+<li><p>发送端</p>
+<ul>
+<li>产生数据慢，一产生就发送；如产生1个字节，就发送1+20（IP头）+20（TCP头）。逐字节传输产生较长时延</li>
+</ul>
+</li>
+<li><p>接受端</p>
+<ul>
+<li>消费数据慢，每次只消费1字节，就发送确认报文并设置窗口为1字节，导致小包的发送。</li>
+</ul>
+</li>
+<li><p>解决</p>
+<ul>
+<li>1.Nagle算法，在等ACK的时候积攒数据</li>
+<li>延长ACK.从而延迟窗口通告，给时间放大接受窗口</li>
+<li><p>3.Clark解决方法</p>
+<ul>
+<li>收到数据就确认，但是宣告窗口为0</li>
+<li>直到缓冲区已经空一半||有足够空间</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="TCP黏包"><a href="#TCP黏包" class="headerlink" title="TCP黏包"></a>TCP黏包</h3><ul>
+<li>UDP不会产生黏包，因为有边界</li>
+<li><p>原因</p>
+<ul>
+<li>1.Nagle算法造成的发送端黏包</li>
+<li>2.接受端接受不及时，造成TCP缓存区存放了几段数据，却来不及分组</li>
+</ul>
+</li>
+<li><p>解决</p>
+<ul>
+<li><p>1.关闭Nagle算法</p>
+<ul>
+<li>关闭优化算法，降低网络发送效率</li>
+</ul>
+</li>
+<li><p>2.接受端尽可能快速地从缓冲区读取数据</p>
+<ul>
+<li>只是减少黏包的可能性</li>
+</ul>
+</li>
+<li><p>3.发送的数据中，添加一个表示数据的开头和结尾的字符，收到消息后通过这些字符处理</p>
+</li>
+<li>添加发送长度</li>
+<li><a href="https://www.cnblogs.com/qiaoconglovelife/p/5733247.html" target="_blank" rel="noopener">https://www.cnblogs.com/qiaoconglovelife/p/5733247.html</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="头部有哪些字段？【结合谈作用！】"><a href="#头部有哪些字段？【结合谈作用！】" class="headerlink" title="头部有哪些字段？【结合谈作用！】"></a>头部有哪些字段？【结合谈作用！】</h3><ul>
+<li><p>头部</p>
+<ul>
+<li><p>源端口和目的端口字段</p>
+<ul>
+<li>各两字节</li>
+<li>端口是运输层和应用层的服务端口</li>
+<li>运输层的复用和分用功能都要通过端口才能实现</li>
+</ul>
+</li>
+<li><p>序列字段</p>
+<ul>
+<li>4字节</li>
+<li>传输的数据流中每一个字节都编上一个序号</li>
+<li><p>该字段指本报文所发送的数据的第一个字节的序号</p>
+<ul>
+<li>如序号字段为301，携带100字节，则最后一个字节的序号为400.下一个报文从401开始</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>确认号字段</p>
+<ul>
+<li>4字节</li>
+<li>期望收到对方的下一个报文段的数据的第一个字节的序号</li>
+<li>若确认号为N，则表明到序号N-1位置的所有数据都已正确收到</li>
+</ul>
+</li>
+<li><p>数据偏移（即首部长度）</p>
+<ul>
+<li>指出TCP报文段的数据起始处距离TCP报文段的起始初有多远</li>
+<li>以四字节为计算单位（单位32位），所以值为15时，首部字段为60字节。</li>
+</ul>
+</li>
+<li><p>保留字段</p>
+<ul>
+<li>占6位，目前为0，暂可忽略</li>
+</ul>
+</li>
+<li><p>紧急位URG</p>
+<ul>
+<li>URG=1时，报文有紧急数据，应尽快传输</li>
+<li>配合紧急指针使用，从第一个字节到紧急指针所指的字节就是紧急数据</li>
+</ul>
+</li>
+<li><p>确认位ACK</p>
+<ul>
+<li>ACK=1时确认号字段才有效</li>
+<li>TCP规定，连接建立后，所有传送的报文段都必须把ACK重置为1</li>
+</ul>
+</li>
+<li><p>推送位PUSH</p>
+<ul>
+<li>接受TCP收到PSH=1的报文段，就尽快的交付应用程序，不再等整个缓存都填满了再向上交付</li>
+</ul>
+</li>
+<li><p>复位位RST</p>
+<ul>
+<li>RST=1时，TCP连接中出现严重的差错，必须释放连接，然后重新建立运输连接</li>
+</ul>
+</li>
+<li><p>同部位SYN</p>
+<ul>
+<li>SYN=1表示这个连接还活着</li>
+</ul>
+</li>
+<li><p>终止位FIN</p>
+<ul>
+<li>用来释放一个连接</li>
+<li>FIN=1表明发送方的数据已经发送完毕，并要求释放传输连接</li>
+</ul>
+</li>
+<li><p>窗口字段</p>
+<ul>
+<li>2字节</li>
+<li>表示当前允许对方发送的最大数据量，单位为字节</li>
+<li>如：窗口字段为1000，确认好为701，说明还有100字节的数据缓存空间（从701到1700）</li>
+</ul>
+</li>
+<li><p>校验和</p>
+<ul>
+<li>2字节</li>
+<li><p>需要加12字节的伪首部</p>
+<ul>
+<li>32位的源IP地址</li>
+<li><p>32位的目的IP地址</p>
+<ul>
+<li>检验是否收错</li>
+</ul>
+</li>
+<li><p>8个保留字节</p>
+</li>
+<li>8位传输协议号（tcp是6，udp是17）</li>
+<li>16位TCP报文长度</li>
+</ul>
+</li>
+<li><p>校验的计算过程</p>
+<ul>
+<li>计算三个部分：TCP首部+TCP数据+TCP伪首部</li>
+<li>都分为16bit的字节，若长度为奇数，则最后添加一个都为0的字节</li>
+<li>反码相加所有的16位（进位也要累加，进位（大于16bit）则高位叠加到低位）</li>
+</ul>
+</li>
+<li><p><a href="https://blog.csdn.net/zhangskd/article/details/11770647" target="_blank" rel="noopener">https://blog.csdn.net/zhangskd/article/details/11770647</a></p>
+</li>
+</ul>
+</li>
+<li><p>紧急指针字段</p>
+<ul>
+<li>16位</li>
+<li>指出本报文紧急数据共有多少个字节</li>
+</ul>
+</li>
+<li><p>选项字段</p>
+<ul>
+<li>长度可变</li>
+<li>TCP最初只规定了MSS（最大报文段长度）</li>
+<li>即数据字段的最大长度</li>
+</ul>
+</li>
+<li><p>填充字段</p>
+<ul>
+<li>为了使整个首部是4字节的整数倍</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="如何保持可靠传输"><a href="#如何保持可靠传输" class="headerlink" title="如何保持可靠传输"></a>如何保持可靠传输</h3><ul>
+<li>1.三次握手建立连接</li>
+<li>2.讲数据截断为合理的长度（按字节编号，合理分片），使数据包长度保持不变（区别于UDP）</li>
+<li>3.超时重发机制（定时器超时前收不到目的端的确认报文段将重发）</li>
+<li>4.对于收到的请求，给出响应（会延迟几分之一秒，可能为包的完整校验）</li>
+<li>5.校验出包有错则丢弃报文段且不响应，让对方超时重发（保持首部和数据的校验和，端对端校验和）</li>
+<li>6.能丢弃重复数据</li>
+<li><p>7.TCP可进行流量控制，防止较快主机致使主机的缓冲区溢出</p>
+<ul>
+<li>流量控制协议：可变大小的滑动窗口协议</li>
+</ul>
+</li>
+<li><p>8.提供拥塞控制。网络拥塞时减少数据的发送</p>
+</li>
+</ul>
+<h2 id="IP地址的分类"><a href="#IP地址的分类" class="headerlink" title="IP地址的分类"></a>IP地址的分类</h2><h3 id="0"><a href="#0" class="headerlink" title="0"></a>0</h3><h3 id="2-7"><a href="#2-7" class="headerlink" title="2**7"></a>2**7</h3><h3 id="27-26"><a href="#27-26" class="headerlink" title="27+26"></a>2<strong>7+2</strong>6</h3><h3 id="27-26-2-5"><a href="#27-26-2-5" class="headerlink" title="27+26+2**5"></a>2<strong>7+2</strong>6+2**5</h3><h3 id="27-26-25-24"><a href="#27-26-25-24" class="headerlink" title="27+26+25+24"></a>2<strong>7+2</strong>6+2<strong>5+2</strong>4</h3><h2 id="协议对应端口默认端口"><a href="#协议对应端口默认端口" class="headerlink" title="协议对应端口默认端口"></a>协议对应端口默认端口</h2><h3 id="http"><a href="#http" class="headerlink" title="http"></a>http</h3><ul>
+<li>80</li>
+</ul>
+<h3 id="https"><a href="#https" class="headerlink" title="https"></a>https</h3><ul>
+<li>443</li>
+</ul>
+<h3 id="ftp"><a href="#ftp" class="headerlink" title="ftp"></a>ftp</h3><ul>
+<li>20、21</li>
+</ul>
+<h3 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a>telnet</h3><ul>
+<li>23</li>
+</ul>
+<h3 id="SMTP"><a href="#SMTP" class="headerlink" title="SMTP"></a>SMTP</h3><ul>
+<li>25</li>
+</ul>
+<h2 id="OSI模型"><a href="#OSI模型" class="headerlink" title="OSI模型"></a>OSI模型</h2><h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><ul>
+<li>为应用程序提供服务</li>
+<li>HTTP、FTP、SMTP、Telnet、DNS</li>
+</ul>
+<h3 id="表示层"><a href="#表示层" class="headerlink" title="表示层"></a>表示层</h3><ul>
+<li>数据格式转化、数据加密</li>
+<li>JPEG、MIDI</li>
+</ul>
+<h3 id="会话层"><a href="#会话层" class="headerlink" title="会话层"></a>会话层</h3><ul>
+<li>建立、管理和维护会话</li>
+<li>PFC、SQL</li>
+</ul>
+<h3 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h3><ul>
+<li>建立、管理和维护端到端的连接</li>
+<li>TCP、UDP</li>
+</ul>
+<h3 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h3><ul>
+<li>IP选址及路由选择</li>
+<li>IP、ARP、IPX</li>
+</ul>
+<h3 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h3><ul>
+<li>提供介质访问和链路管理</li>
+<li>HDLC、VLAN</li>
+</ul>
+<h3 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h3><ul>
+<li>物理层</li>
+<li>IEEE802.3</li>
+</ul>
+
+      
+      <div>
+        
+        <div>
+    
+        <div style="text-align:center;color: #636363;font-size:14px;letter-spacing: 10px">本文结束啦<i class="fa fa-bell"></i>感谢您的阅读</div>
+    
+</div>
+        
+      </div>
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TCP/" rel="tag"><i class="fa fa-tag"> TCP</i></a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/23/2019-02-23(1)/" rel="next" title="js总结之模拟new操作符">
+                <i class="fa fa-chevron-left"></i> js总结之模拟new操作符
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/25/2019-02-25(1)/" rel="prev" title="网络之DNS总结">
+                网络之DNS总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/boy.jpg" alt="changchang">
+            
+              <p class="site-author-name" itemprop="name">changchang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/changchangge" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP"><span class="nav-number">1.</span> <span class="nav-text">TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三次握手和四次握手"><span class="nav-number">1.1.</span> <span class="nav-text">三次握手和四次握手</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立连接后如何保持连接（检测未断开）"><span class="nav-number">1.2.</span> <span class="nav-text">建立连接后如何保持连接（检测未断开）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拥塞控制"><span class="nav-number">1.3.</span> <span class="nav-text">拥塞控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流量控制"><span class="nav-number">1.4.</span> <span class="nav-text">流量控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#糊涂窗口综合症"><span class="nav-number">1.5.</span> <span class="nav-text">糊涂窗口综合症</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP黏包"><span class="nav-number">1.6.</span> <span class="nav-text">TCP黏包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#头部有哪些字段？【结合谈作用！】"><span class="nav-number">1.7.</span> <span class="nav-text">头部有哪些字段？【结合谈作用！】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何保持可靠传输"><span class="nav-number">1.8.</span> <span class="nav-text">如何保持可靠传输</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IP地址的分类"><span class="nav-number">2.</span> <span class="nav-text">IP地址的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0"><span class="nav-number">2.1.</span> <span class="nav-text">0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7"><span class="nav-number">2.2.</span> <span class="nav-text">2**7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27-26"><span class="nav-number">2.3.</span> <span class="nav-text">27+26</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27-26-2-5"><span class="nav-number">2.4.</span> <span class="nav-text">27+26+2**5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27-26-25-24"><span class="nav-number">2.5.</span> <span class="nav-text">27+26+25+24</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协议对应端口默认端口"><span class="nav-number">3.</span> <span class="nav-text">协议对应端口默认端口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#http"><span class="nav-number">3.1.</span> <span class="nav-text">http</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#https"><span class="nav-number">3.2.</span> <span class="nav-text">https</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ftp"><span class="nav-number">3.3.</span> <span class="nav-text">ftp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#telnet"><span class="nav-number">3.4.</span> <span class="nav-text">telnet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SMTP"><span class="nav-number">3.5.</span> <span class="nav-text">SMTP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OSI模型"><span class="nav-number">4.</span> <span class="nav-text">OSI模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用层"><span class="nav-number">4.1.</span> <span class="nav-text">应用层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表示层"><span class="nav-number">4.2.</span> <span class="nav-text">表示层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#会话层"><span class="nav-number">4.3.</span> <span class="nav-text">会话层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传输层"><span class="nav-number">4.4.</span> <span class="nav-text">传输层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络层"><span class="nav-number">4.5.</span> <span class="nav-text">网络层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据链路层"><span class="nav-number">4.6.</span> <span class="nav-text">数据链路层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#物理层"><span class="nav-number">4.7.</span> <span class="nav-text">物理层</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">changchang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  undefined
+  <script type="text/javascript" color="0,0,0" opacity="0.4" zindex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"scriptForm":"local","pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/01/assets/haru01.model.json"},"display":{"position":"right","width":140,"height":260},"mobile":{"show":false},"log":false});</script></body>
+</html>
