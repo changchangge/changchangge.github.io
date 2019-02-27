@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="DNS,">
+  <meta name="keywords" content="HTTP,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="DNS解析的方法 解析的全过程  1.查看本地hosts文件，发现没有www.qq.com IP映射关系，将请求发送到本地的DNS服务器。  递归查询   2.本地DNS不包含qq.com该域的映射关系，自然不存在www记录，将请求转发到根域名服务器  迭代查询 根域名服务器  全球标号A到M，借由任播技术，所有编号相同的根服务器都是同一个IP，所以公用13个IP.     3.根域名DNS服务器">
-<meta name="keywords" content="DNS">
+<meta name="description" content="HTTP头部 请求  GET/aboutHTTP/1.1 信息类：User-Agent（应用程序）、Host（主机名和端口号）、Referer（当前请求的url） 请求实体相关：Accept，Accept-Language、Accept-Encoding、Range 缓存控制：Cache-Control、if-None-Match(如果提供的实体标记和当前文档标记不同，就获取文档)、If-Modi">
+<meta name="keywords" content="HTTP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网络之DNS总结">
-<meta property="og:url" content="http://yoursite.com/2019/02/25/2019-02-25(1)/index.html">
+<meta property="og:title" content="网络之HTTP总结">
+<meta property="og:url" content="http://yoursite.com/2019/02/25/2019-02-27(1)/index.html">
 <meta property="og:site_name" content="厂厂的博客">
-<meta property="og:description" content="DNS解析的方法 解析的全过程  1.查看本地hosts文件，发现没有www.qq.com IP映射关系，将请求发送到本地的DNS服务器。  递归查询   2.本地DNS不包含qq.com该域的映射关系，自然不存在www记录，将请求转发到根域名服务器  迭代查询 根域名服务器  全球标号A到M，借由任播技术，所有编号相同的根服务器都是同一个IP，所以公用13个IP.     3.根域名DNS服务器">
+<meta property="og:description" content="HTTP头部 请求  GET/aboutHTTP/1.1 信息类：User-Agent（应用程序）、Host（主机名和端口号）、Referer（当前请求的url） 请求实体相关：Accept，Accept-Language、Accept-Encoding、Range 缓存控制：Cache-Control、if-None-Match(如果提供的实体标记和当前文档标记不同，就获取文档)、If-Modi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-25T10:44:06.596Z">
+<meta property="og:updated_time" content="2019-02-27T06:50:26.537Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="网络之DNS总结">
-<meta name="twitter:description" content="DNS解析的方法 解析的全过程  1.查看本地hosts文件，发现没有www.qq.com IP映射关系，将请求发送到本地的DNS服务器。  递归查询   2.本地DNS不包含qq.com该域的映射关系，自然不存在www记录，将请求转发到根域名服务器  迭代查询 根域名服务器  全球标号A到M，借由任播技术，所有编号相同的根服务器都是同一个IP，所以公用13个IP.     3.根域名DNS服务器">
+<meta name="twitter:title" content="网络之HTTP总结">
+<meta name="twitter:description" content="HTTP头部 请求  GET/aboutHTTP/1.1 信息类：User-Agent（应用程序）、Host（主机名和端口号）、Referer（当前请求的url） 请求实体相关：Accept，Accept-Language、Accept-Encoding、Range 缓存控制：Cache-Control、if-None-Match(如果提供的实体标记和当前文档标记不同，就获取文档)、If-Modi">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/25/2019-02-25(1)/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/25/2019-02-27(1)/">
 
 
 
 
 
-  <title>网络之DNS总结 | 厂厂的博客</title>
+  <title>网络之HTTP总结 | 厂厂的博客</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/25/2019-02-25(1)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/25/2019-02-27(1)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="changchang">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">网络之DNS总结</h1>
+          <h1 class="post-title" itemprop="name headline">网络之HTTP总结</h1>
         
 
         <div class="post-meta">
@@ -352,53 +352,285 @@
       
 
       
-        <h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><h3 id="解析的方法"><a href="#解析的方法" class="headerlink" title="解析的方法"></a>解析的方法</h3><ul>
-<li><p>解析的全过程</p>
+        <h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><h3 id="头部"><a href="#头部" class="headerlink" title="头部"></a>头部</h3><ul>
+<li><p>请求</p>
 <ul>
-<li><p>1.查看本地hosts文件，发现没有<a href="http://www.qq.com" target="_blank" rel="noopener">www.qq.com</a> IP映射关系，将请求发送到本地的DNS服务器。</p>
-<ul>
-<li>递归查询</li>
+<li>GET/aboutHTTP/1.1</li>
+<li>信息类：User-Agent（应用程序）、Host（主机名和端口号）、Referer（当前请求的url）</li>
+<li>请求实体相关：Accept，Accept-Language、Accept-Encoding、Range</li>
+<li>缓存控制：Cache-Control、if-None-Match(如果提供的实体标记和当前文档标记不同，就获取文档)、If-Modified-Since（在这个指定时间后修改了，否则就限制这个请求）</li>
+<li>会话：Cookie</li>
+<li>跨域：Origin</li>
 </ul>
 </li>
-<li><p>2.本地DNS不包含qq.com该域的映射关系，自然不存在www记录，将请求转发到根域名服务器</p>
+<li><p>响应</p>
 <ul>
-<li>迭代查询</li>
-<li><p>根域名服务器</p>
+<li>HTTP/1.1 200OK</li>
+<li>信息：Server Date</li>
+<li>实体信息：Location，Content-Length、Content-Encoding、Content-Language</li>
+<li>缓存：Etag、Last-Modified、Cache-Control、Expires（实体不再有效）</li>
+<li>跨域：Access-Control-Allow-Orgin,-Language</li>
+</ul>
+</li>
+</ul>
+<h3 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h3><ul>
+<li><p>1XX信息性状态码</p>
 <ul>
-<li>全球标号A到M，借由任播技术，所有编号相同的根服务器都是同一个IP，所以公用13个IP.</li>
+<li>100 Continue</li>
+</ul>
+</li>
+<li><p>2XX成功状态码</p>
+<ul>
+<li>200 OK</li>
+<li><p>204 No Content</p>
+<ul>
+<li>响应报文没有主体部分</li>
+</ul>
+</li>
+<li><p>206 PartialContent</p>
+<ul>
+<li>成功执行了Range请求，必须包含Content-Range首部</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>3.根域名DNS服务器返回负责.com域解析的服务器返回给本地DNS服务器，本地服务器将再次请求发送给.com域名服务器</p>
-</li>
-<li>4.com域名返回负责qq.com域解析的服务器，本地DNS服务器再去请求</li>
-<li><p>5.由qq.com服务器返回负责<a href="http://www.qq.com的映射关系给本地服务器" target="_blank" rel="noopener">www.qq.com的映射关系给本地服务器</a></p>
+<li><p>3XX重定向状态码</p>
 <ul>
-<li>迭代查询结束</li>
+<li><p>301 Moved Permanently</p>
+<ul>
+<li>原URL已被移除，使用响应的Location纸箱的URL</li>
 </ul>
 </li>
-<li><p>6.本地DNS服务器将结果保存在本地缓存，并保持TTL时间，同时将结果应答给客户端</p>
+<li><p>302 Found</p>
 <ul>
-<li>TTL（Time to Live），在DNS服务器上缓存的时间</li>
+<li>未移除，但临时用Location的URL来临时定位资源</li>
 </ul>
 </li>
-<li><p>7.客户端向该本地服务器查询<a href="http://www.qq.com时，如果在TTL时间内，直接返回缓存；否则回到2重新迭代查询" target="_blank" rel="noopener">www.qq.com时，如果在TTL时间内，直接返回缓存；否则回到2重新迭代查询</a></p>
-</li>
-<li>*本地DNS服务器在代替客户端向其他服务器查询时，客户端完全处于等待状态</li>
+<li><p>304 No MOdified</p>
+<ul>
+<li>协商缓存</li>
 </ul>
 </li>
-<li><p>递归查询</p>
-<ul>
-<li>在客户端和DNS中采用</li>
-<li>要求所请求的DNS服务器应答给客户端所请求域名和IP的映射关系</li>
-<li>也就是说返回的结果只有查询成功和查询失败</li>
 </ul>
 </li>
-<li><p>迭代查询</p>
+<li><p>4XX客户端错误代码</p>
 <ul>
-<li>在DNS服务器之间采用</li>
-<li>应答不一定是域名和IP之间的映射关系，也就是说另一台DNS服务器，让客户端（本地服务器）再请求发送给另一台服务器</li>
+<li><p>400 Bad Request</p>
+<ul>
+<li>客户端发送了错误请求</li>
+</ul>
+</li>
+<li><p>401 Unauthorized</p>
+<ul>
+<li>需要认证身份</li>
+</ul>
+</li>
+<li><p>403 Forbidden</p>
+<ul>
+<li>被服务器拒绝</li>
+</ul>
+</li>
+<li><p>404 Not Found</p>
+<ul>
+<li>无法找到请求的url</li>
+</ul>
+</li>
+<li><p>405 Method Not Allowed</p>
+<ul>
+<li>使用了不支持的方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>5XX服务端错误状态代码</p>
+<ul>
+<li><p>500 Internal Server Error</p>
+<ul>
+<li>服务器出错</li>
+</ul>
+</li>
+<li><p>504 Gateway Timeout</p>
+<ul>
+<li>网关等待服务器的响应超时</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="GET、POST"><a href="#GET、POST" class="headerlink" title="GET、POST"></a>GET、POST</h3><ul>
+<li><p>区别</p>
+<ul>
+<li>1.GET方法没有消息体，数据只能放在UPL中，而URL有长度限制，POST有消息体</li>
+<li>2.GET请求能缓存，而POST不能</li>
+<li>3.GET语义是获取/查询资源信息，POST为提交数据。</li>
+</ul>
+</li>
+</ul>
+<h3 id="缓存问题"><a href="#缓存问题" class="headerlink" title="缓存问题"></a>缓存问题</h3><ul>
+<li><p>Cache-Control【优先】</p>
+<ul>
+<li>max-age</li>
+<li><p>no-cache</p>
+<ul>
+<li>告知代理服务器不直接使用缓存，向原服务器发起请求</li>
+<li>有可能存下来，但是不用</li>
+</ul>
+</li>
+<li><p>no-store</p>
+<ul>
+<li>所有内容都不保存到缓存</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Expires</p>
+<ul>
+<li>GMT时间</li>
+<li>缺点：服务器时间可能不准，跨时区</li>
+</ul>
+</li>
+<li><p>304和200的区别</p>
+<ul>
+<li><p>200为强缓存</p>
+<ul>
+<li>如果设置协商缓存，但没有设置Cache-Control，该值默认为Private；缓存系统可以（但不一定要）对一个成功的响应返回200OK</li>
+</ul>
+</li>
+<li><p>304为协商缓存</p>
+</li>
+</ul>
+</li>
+<li><p>不同刷新行为的区别</p>
+<ul>
+<li><p>UPL输入地址栏然后回车、直接点击链接</p>
+<ul>
+<li>200</li>
+</ul>
+</li>
+<li><p>F5、点击刷新、右键菜单重新加载</p>
+<ul>
+<li><p>此行为让浏览器无论如何都要发送一个HTTP Request</p>
+<ul>
+<li>304</li>
+<li>200</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ctr+f5</p>
+<ul>
+<li>无视缓存，并刷新相关的缓存时间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Etag【优先】和Last-Modified</p>
+<ul>
+<li><p>ETag</p>
+<ul>
+<li>配合If-None-Match使用</li>
+<li><p>根据文件实体内容产生一段hash字符串（类似于MD5）：inode+mtime</p>
+<ul>
+<li>Inode：文件的元信息</li>
+<li>mtime：文件内容上一次变动时间</li>
+</ul>
+</li>
+<li><p>包括但不限于文件内容（还包括读写权限，拥有者UserID等）</p>
+</li>
+<li><p>缺点</p>
+<ul>
+<li>同一文件不同物理机的inode不同，导致304失效</li>
+<li>计算ETag需要性能消耗</li>
+<li>因为通常是使用CDN，所以问题不会太大</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Last-Modified</p>
+<ul>
+<li>配合if-modefied-since</li>
+<li>格式为GET时间</li>
+<li>缺点：精确到秒，1s内频繁变化无法识别，周期性改变但内容无变化的资源也要重新请求</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>关于from memory cache 和from disk cache（只反映缓存存放的位置，有200和304）</p>
+<ul>
+<li>高版本的chorme新增</li>
+<li><p>from memory cache</p>
+<ul>
+<li>与渲染线程绑定，通常就是tab对应</li>
+<li>从内存中读取，通常0ms</li>
+</ul>
+</li>
+<li><p>from disk cache</p>
+<ul>
+<li>从磁盘读取，通常几十ms</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="无状态"><a href="#无状态" class="headerlink" title="无状态"></a>无状态</h3><ul>
+<li>不保存每次提交的信息</li>
+<li>优点：不用为每个客户端连接分配内存来记忆大量状态，也不用再失去连接时清理内存</li>
+<li>缺点：若以来先前信息，客户端需要重传</li>
+<li><p>会话追踪技术</p>
+<ul>
+<li><p>cookie</p>
+<ul>
+<li><p>七个字段</p>
+<ul>
+<li>namevalue</li>
+<li>domain</li>
+<li><p>path</p>
+<ul>
+<li>默认响应时的URL</li>
+</ul>
+</li>
+<li><p>max-age=</p>
+</li>
+<li>secure</li>
+<li>Http-only</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>session</p>
+<ul>
+<li>写在服务器的session中，分配sid，将sid写入cookie中</li>
+</ul>
+</li>
+<li><p>URL重写</p>
+<ul>
+<li>动态写sessionID，类似于token</li>
+</ul>
+</li>
+<li><p>作为隐藏域嵌入HTML表单中</p>
+<ul>
+<li>页面由表单提交而动态产生时可使用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-0和1-1区别"><a href="#1-0和1-1区别" class="headerlink" title="1.0和1.1区别"></a>1.0和1.1区别</h3><ul>
+<li><p>1.默认持久连接和流水线传输。默认connection：keep-alive除非提出断开，否则以后保持。且默认使用流水线的方式发送（即不用再等上一个响应再发下一个）</p>
+<ul>
+<li>若要关闭，Connection：closed</li>
+</ul>
+</li>
+<li><p>2.状态码100，POST时大于1024，先询问是否能接受</p>
+</li>
+<li><p>3.多了HOST域</p>
+<ul>
+<li>一个物理主机多个虚拟主机共享一个主机</li>
+</ul>
+</li>
+<li><p>4.可分块传输数据：Transfer-Encoding：chunked</p>
+<ul>
+<li>否则动态生成的响应，要把响应整个缓存才知道长度，才能填写Content-Length</li>
 </ul>
 </li>
 </ul>
@@ -428,7 +660,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/DNS/" rel="tag"><i class="fa fa-tag"> DNS</i></a>
+            <a href="/tags/HTTP/" rel="tag"><i class="fa fa-tag"> HTTP</i></a>
           
         </div>
       
@@ -441,8 +673,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/25/2019-02-27(1)/" rel="next" title="网络之HTTP总结">
-                <i class="fa fa-chevron-left"></i> 网络之HTTP总结
+              <a href="/2019/02/25/2019-02-25(2)/" rel="next" title="网络之TCP总结">
+                <i class="fa fa-chevron-left"></i> 网络之TCP总结
               </a>
             
           </div>
@@ -450,6 +682,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/25/2019-02-25(1)/" rel="prev" title="网络之DNS总结">
+                网络之DNS总结 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -593,7 +829,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS"><span class="nav-number">1.</span> <span class="nav-text">DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解析的方法"><span class="nav-number">1.1.</span> <span class="nav-text">解析的方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP"><span class="nav-number">1.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#头部"><span class="nav-number">1.1.</span> <span class="nav-text">头部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态码"><span class="nav-number">1.2.</span> <span class="nav-text">状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GET、POST"><span class="nav-number">1.3.</span> <span class="nav-text">GET、POST</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存问题"><span class="nav-number">1.4.</span> <span class="nav-text">缓存问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无状态"><span class="nav-number">1.5.</span> <span class="nav-text">无状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-0和1-1区别"><span class="nav-number">1.6.</span> <span class="nav-text">1.0和1.1区别</span></a></li></ol></li></ol></div>
             
 
           </div>
