@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="路漫漫其修远兮，吾将上下而求索">
+<meta name="description" content="例子一：1234567891011121314//插入排序function test(arr) &amp;#123;  for (let i = 1; i &amp;lt; arr.length; i++) &amp;#123;    var key = arr[i];    var j = i - 1;    while (arr[j] &amp;gt; key &amp;amp;&amp;amp; j &amp;gt;= 0) &amp;#123;">
 <meta name="keywords" content="数据结构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构学习笔记(1)">
 <meta property="og:url" content="http://yoursite.com/2019/03/04/2019-03-04(1)/index.html">
 <meta property="og:site_name" content="厂厂的博客">
-<meta property="og:description" content="路漫漫其修远兮，吾将上下而求索">
+<meta property="og:description" content="例子一：1234567891011121314//插入排序function test(arr) &amp;#123;  for (let i = 1; i &amp;lt; arr.length; i++) &amp;#123;    var key = arr[i];    var j = i - 1;    while (arr[j] &amp;gt; key &amp;amp;&amp;amp; j &amp;gt;= 0) &amp;#123;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-04T15:56:19.347Z">
+<meta property="og:updated_time" content="2019-03-14T12:15:11.604Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构学习笔记(1)">
-<meta name="twitter:description" content="路漫漫其修远兮，吾将上下而求索">
+<meta name="twitter:description" content="例子一：1234567891011121314//插入排序function test(arr) &amp;#123;  for (let i = 1; i &amp;lt; arr.length; i++) &amp;#123;    var key = arr[i];    var j = i - 1;    while (arr[j] &amp;gt; key &amp;amp;&amp;amp; j &amp;gt;= 0) &amp;#123;">
 
 
 
@@ -352,7 +352,9 @@
       
 
       
-        
+        <p>例子一：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//插入排序</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">var</span> key = arr[i];</span><br><span class="line">    <span class="keyword">var</span> j = i - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (arr[j] &gt; key &amp;&amp; j &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">      arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">      j--;</span><br><span class="line">    &#125;</span><br><span class="line">    arr[j + <span class="number">1</span>] = key;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line">test([<span class="number">8</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">3</span>, <span class="number">6</span>]);</span><br></pre></td></tr></table></figure></p>
+<p>例子二<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//插入排序</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">var</span> key = arr[i];</span><br><span class="line">    <span class="keyword">var</span> j = i - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (arr[j] &gt; key &amp;&amp; j &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">      arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">      j--;</span><br><span class="line">    &#125;</span><br><span class="line">    arr[j + <span class="number">1</span>] = key;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line">test([<span class="number">8</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">3</span>, <span class="number">6</span>]);</span><br></pre></td></tr></table></figure></p>
+
       
       <div>
         
@@ -473,7 +475,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
