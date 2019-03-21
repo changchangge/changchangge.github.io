@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="操作系统,">
+  <meta name="keywords" content="NodeJS,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="进程：为进入内存执行的程序建立管理实体。多道程序系统的实现要点：1.如何使用资源2.如何复用CPU3.如何使CPU和I/O设备充分并行4.如何让正在运行的程序让出CPU 系统调用的实现要点：1.编写系统调用处理程序2.设计一张系统调用入口地址表，每个入口地址指向一个系统调用的处理程序，并包含系统调用自带参数的个数3.陷入处理机制需开辟现场保护区，已保存发生系统调用时的处理器现场。 OS构建：内核、">
-<meta name="keywords" content="操作系统">
+<meta name="description" content="Buffer结构模块结构Buffer是一个像Array的对象，但它主要用于操作字节。Buffer是一个典型的JavaScript与C++结合的模块，性能相关部分用C++实现，将非性能部分用JavaScript实现。 Buffer对象 使用new初始化（误，v6.0.0之前） 具有length属性 赋值会变为0-256之间。Buffer内存分配 Buffer对象的内存不是分配在V8的堆内存中，而是N">
+<meta name="keywords" content="NodeJS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机操作系统概述学习笔记">
-<meta property="og:url" content="http://yoursite.com/2019/03/03/2019-03-03(2)/index.html">
+<meta property="og:title" content="理解Buffer">
+<meta property="og:url" content="http://yoursite.com/2019/03/17/2019-03-21/index.html">
 <meta property="og:site_name" content="厂厂的博客">
-<meta property="og:description" content="进程：为进入内存执行的程序建立管理实体。多道程序系统的实现要点：1.如何使用资源2.如何复用CPU3.如何使CPU和I/O设备充分并行4.如何让正在运行的程序让出CPU 系统调用的实现要点：1.编写系统调用处理程序2.设计一张系统调用入口地址表，每个入口地址指向一个系统调用的处理程序，并包含系统调用自带参数的个数3.陷入处理机制需开辟现场保护区，已保存发生系统调用时的处理器现场。 OS构建：内核、">
+<meta property="og:description" content="Buffer结构模块结构Buffer是一个像Array的对象，但它主要用于操作字节。Buffer是一个典型的JavaScript与C++结合的模块，性能相关部分用C++实现，将非性能部分用JavaScript实现。 Buffer对象 使用new初始化（误，v6.0.0之前） 具有length属性 赋值会变为0-256之间。Buffer内存分配 Buffer对象的内存不是分配在V8的堆内存中，而是N">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-02T17:38:25.845Z">
+<meta property="og:updated_time" content="2019-03-21T15:00:56.852Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="计算机操作系统概述学习笔记">
-<meta name="twitter:description" content="进程：为进入内存执行的程序建立管理实体。多道程序系统的实现要点：1.如何使用资源2.如何复用CPU3.如何使CPU和I/O设备充分并行4.如何让正在运行的程序让出CPU 系统调用的实现要点：1.编写系统调用处理程序2.设计一张系统调用入口地址表，每个入口地址指向一个系统调用的处理程序，并包含系统调用自带参数的个数3.陷入处理机制需开辟现场保护区，已保存发生系统调用时的处理器现场。 OS构建：内核、">
+<meta name="twitter:title" content="理解Buffer">
+<meta name="twitter:description" content="Buffer结构模块结构Buffer是一个像Array的对象，但它主要用于操作字节。Buffer是一个典型的JavaScript与C++结合的模块，性能相关部分用C++实现，将非性能部分用JavaScript实现。 Buffer对象 使用new初始化（误，v6.0.0之前） 具有length属性 赋值会变为0-256之间。Buffer内存分配 Buffer对象的内存不是分配在V8的堆内存中，而是N">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/03/2019-03-03(2)/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/17/2019-03-21/">
 
 
 
 
 
-  <title>计算机操作系统概述学习笔记 | 厂厂的博客</title>
+  <title>理解Buffer | 厂厂的博客</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/03/2019-03-03(2)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/17/2019-03-21/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="changchang">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">计算机操作系统概述学习笔记</h1>
+          <h1 class="post-title" itemprop="name headline">理解Buffer</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-03T01:37:33+08:00">
-                2019-03-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-17T11:30:03+08:00">
+                2019-03-17
               </time>
             
 
@@ -315,8 +315,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
                   </a>
                 </span>
 
@@ -352,13 +352,28 @@
       
 
       
-        <h3 id="进程：为进入内存执行的程序建立管理实体。"><a href="#进程：为进入内存执行的程序建立管理实体。" class="headerlink" title="进程：为进入内存执行的程序建立管理实体。"></a>进程：为进入内存执行的程序建立管理实体。</h3><h3 id="多道程序系统的实现要点："><a href="#多道程序系统的实现要点：" class="headerlink" title="多道程序系统的实现要点："></a>多道程序系统的实现要点：</h3><p>1.如何使用资源<br>2.如何复用CPU<br>3.如何使CPU和I/O设备充分并行<br>4.如何让正在运行的程序让出CPU</p>
-<h3 id="系统调用的实现要点："><a href="#系统调用的实现要点：" class="headerlink" title="系统调用的实现要点："></a>系统调用的实现要点：</h3><p>1.编写系统调用处理程序<br>2.设计一张系统调用入口地址表，每个入口地址指向一个系统调用的处理程序，并包含系统调用自带参数的个数<br>3.陷入处理机制需开辟现场保护区，已保存发生系统调用时的处理器现场。</p>
-<h3 id="OS构建："><a href="#OS构建：" class="headerlink" title="OS构建："></a>OS构建：</h3><p>内核、进程、线程、管程等</p>
-<h3 id="操作系统实现的第二种层次结构："><a href="#操作系统实现的第二种层次结构：" class="headerlink" title="操作系统实现的第二种层次结构："></a>操作系统实现的第二种层次结构：</h3><p>1.用户态<br>命令、进程、库、环境<br>2.文件系统调用<br>用户进程管理<br>目录管理<br>设备文件<br>文件系统<br>管道等高阶通信<br>3.软硬件协同内核<br>内存与虚拟内存管理<br>块设备管理，I/O控制<br>核心进程管理、控制与通信原语<br>中断管理<br>4.硬件电路<br>过程机制<br>指令编译<br>电路执行</p>
-<h3 id="指令和处理器模式"><a href="#指令和处理器模式" class="headerlink" title="指令和处理器模式"></a>指令和处理器模式</h3><p>特权指令：只能被内核使用<br>非特权指令：都能被使用<br>处理器模式：<br>0操作系统内核<br>1系统调用<br>2共享库程序<br>3用户程序等</p>
-<h3 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h3><p>概念（广义）：中断是指程序执行过程中，遇到急需处理的事件时，暂时中止CPU上运行程序的运行，转去执行相应的事件处理程序，待处理完成后再返回原程序被中断出或者调度其他程序执行的过程。<br>操作系统是“中断驱动”的；中断是激活操作系统的唯一方式。<br>狭义中断：指来源于处理器之外的中断事件，即于当前运行指令无关的中断事件，如I/O中断，时钟中断，外部信号中断等<br>异常：当前运行指令引起的中断事件。（CPU内部）如地址异常、算术异常、处理器硬件故障<br>系统异常：执行陷入指令而触发系统调用引起的中断事件，如请求设备、请求I/O，创建进程。</p>
-<h3 id="中断源"><a href="#中断源" class="headerlink" title="中断源"></a>中断源</h3><p>1.处理器硬件故障中断事件。<br>由处理器、内存储器、总线等硬件故障引起。<br>2.程序性中断事件<br>处理器执行机器指令引起（算术异常、非法指令、终止进程指令、虚拟地址异常）<br>3.自愿性中断事件<br>处理器执行陷入指令请求OS服务引起。<br>4.I/O处理事件<br>5.外部中断事件<br>外部设备发出的信号引起的中断事件</p>
+        <h3 id="Buffer结构"><a href="#Buffer结构" class="headerlink" title="Buffer结构"></a>Buffer结构</h3><h4 id="模块结构"><a href="#模块结构" class="headerlink" title="模块结构"></a>模块结构</h4><p>Buffer是一个像Array的对象，但它主要用于操作字节。Buffer是一个典型的JavaScript与C++结合的模块，性能相关部分用C++实现，将非性能部分用JavaScript实现。</p>
+<h4 id="Buffer对象"><a href="#Buffer对象" class="headerlink" title="Buffer对象"></a>Buffer对象</h4><ul>
+<li>使用new初始化（误，v6.0.0之前）</li>
+<li>具有length属性</li>
+<li>赋值会变为0-256之间。<h4 id="Buffer内存分配"><a href="#Buffer内存分配" class="headerlink" title="Buffer内存分配"></a>Buffer内存分配</h4></li>
+<li>Buffer对象的内存不是分配在V8的堆内存中，而是Node的C++层面实现内存的申请。</li>
+<li>Node使用slab分配机制：<br>1.full<br>2.partial<br>3.empty</li>
+<li>Node以8KB为界限区分Buffer是大对象还是小对象<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4>简单来说，真正的内存是在Node的C++层面提供的，JavaScript层面只是使用它。当进行小而频繁的Buffer操作时，采用slab的机制进行预先申请和时候分配，使得JavaScript到操作系统之间不必有过多的内存申请方面的系统调用。对于大块的Buffer而言，则是直接使用C++层提供的内存，无需细腻的分配操作。<h3 id="Buffer的转换"><a href="#Buffer的转换" class="headerlink" title="Buffer的转换"></a>Buffer的转换</h3>因为 new Buffer() 会根据参数的类型而不同，所以如果没有正确地校验传给 new Buffer() 的参数、就可能引起安全性与可靠性问题。为了使 Buffer 实例的创建更可靠， new Buffer() 构造函数已被废弃，建议使用 Buffer.from()、 Buffer.alloc()、和 Buffer.allocUnsafe()。</li>
+</ul>
+<ul>
+<li><a href="http://nodejs.cn/s/F5r61t" target="_blank" rel="noopener"><code>Buffer.from(array)</code></a> 返回一个 <code>Buffer</code>，包含传入的字节数组的拷贝。</li>
+<li>[<code>Buffer.from(arrayBuffer[, byteOffset [, length]])</code>](<a href="http://nodejs.cn/s/jGD2qK" target="_blank" rel="noopener">http://nodejs.cn/s/jGD2qK</a>) 返回一个 <code>Buffer</code>，与传入的 <code>ArrayBuffer</code> 共享内存。</li>
+<li><a href="http://nodejs.cn/s/SPUnUK" target="_blank" rel="noopener"><code>Buffer.from(buffer)</code></a> 返回一个 <code>Buffer</code>，包含传入的 <code>Buffer</code> 的内容的拷贝。</li>
+<li><a href="http://nodejs.cn/s/X7oqVF" target="_blank" rel="noopener"><code>Buffer.from(string[, encoding])</code></a> 返回一个 <code>Buffer</code>，包含传入的字符串的拷贝。</li>
+<li>[<code>Buffer.alloc(size[, fill[, encoding]])</code>](<a href="http://nodejs.cn/s/Du96og" target="_blank" rel="noopener">http://nodejs.cn/s/Du96og</a>) 返回一个指定大小且已初始化的 <code>Buffer</code>。 该方法比 <code>Buffer.allocUnsafe(size)</code> 慢，但能确保新创建的 <code>Buffer</code> 不会包含旧数据。</li>
+<li><a href="http://nodejs.cn/s/TWpeWk" target="_blank" rel="noopener"><code>Buffer.allocUnsafe(size)</code></a> 与 <a href="http://nodejs.cn/s/PUENLw" target="_blank" rel="noopener"><code>Buffer.allocUnsafeSlow(size)</code></a> 返回一个指定大小但未初始化的 <code>Buffer</code>。 因为 <code>Buffer</code> 是未初始化的，可能包含旧数据。<h4 id="Buffer转字符串"><a href="#Buffer转字符串" class="headerlink" title="Buffer转字符串"></a>Buffer转字符串</h4>调用to.String([encoding],[start],[end])方法<h4 id="判断Buffer是否支持编码类型"><a href="#判断Buffer是否支持编码类型" class="headerlink" title="判断Buffer是否支持编码类型"></a>判断Buffer是否支持编码类型</h4><code>Buffer.isEncoding(encoding)</code><br>对于不支持的编码，可以尝试使用iconv-lite，iconv<h3 id="Buffer的拼接"><a href="#Buffer的拼接" class="headerlink" title="Buffer的拼接"></a>Buffer的拼接</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var fs=require(&quot;fs&quot;);</span><br><span class="line">var rs=fs.createReadStream(&apos;./README.md&apos;);</span><br><span class="line">var data=&quot;&quot;;</span><br><span class="line">rs.on(&quot;data&quot;,(chunk)=&gt;&#123;data+=chunk;&#125;);</span><br><span class="line">rs.on(&quot;end&quot;,()=&gt;&#123;console.log(data)&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Buffer与性能"><a href="#Buffer与性能" class="headerlink" title="Buffer与性能"></a>Buffer与性能</h3><ul>
+<li>apache ab</li>
+<li>可以通过预先转换静态内容为Buffer对象，可以有效减少CPU的重复使用。</li>
+</ul>
 
       
       <div>
@@ -385,7 +400,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/操作系统/" rel="tag"><i class="fa fa-tag"> 操作系统</i></a>
+            <a href="/tags/NodeJS/" rel="tag"><i class="fa fa-tag"> NodeJS</i></a>
           
         </div>
       
@@ -398,8 +413,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/03/2019-03-03(1)/" rel="next" title="js总结之内存泄漏">
-                <i class="fa fa-chevron-left"></i> js总结之内存泄漏
+              <a href="/2019/03/15/2019-03-15/" rel="next" title="js之模拟原型链查找">
+                <i class="fa fa-chevron-left"></i> js之模拟原型链查找
               </a>
             
           </div>
@@ -408,8 +423,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/04/2019-03-04(1)/" rel="prev" title="数据结构学习笔记(1)">
-                数据结构学习笔记(1) <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/17/2019-03-17(1)/" rel="prev" title="内存控制">
+                内存控制 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -554,7 +569,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程：为进入内存执行的程序建立管理实体。"><span class="nav-number">1.</span> <span class="nav-text">进程：为进入内存执行的程序建立管理实体。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多道程序系统的实现要点："><span class="nav-number">2.</span> <span class="nav-text">多道程序系统的实现要点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统调用的实现要点："><span class="nav-number">3.</span> <span class="nav-text">系统调用的实现要点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OS构建："><span class="nav-number">4.</span> <span class="nav-text">OS构建：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统实现的第二种层次结构："><span class="nav-number">5.</span> <span class="nav-text">操作系统实现的第二种层次结构：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指令和处理器模式"><span class="nav-number">6.</span> <span class="nav-text">指令和处理器模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中断"><span class="nav-number">7.</span> <span class="nav-text">中断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中断源"><span class="nav-number">8.</span> <span class="nav-text">中断源</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Buffer结构"><span class="nav-number">1.</span> <span class="nav-text">Buffer结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模块结构"><span class="nav-number">1.1.</span> <span class="nav-text">模块结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Buffer对象"><span class="nav-number">1.2.</span> <span class="nav-text">Buffer对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Buffer内存分配"><span class="nav-number">1.3.</span> <span class="nav-text">Buffer内存分配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结"><span class="nav-number">1.4.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Buffer的转换"><span class="nav-number">2.</span> <span class="nav-text">Buffer的转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Buffer转字符串"><span class="nav-number">2.1.</span> <span class="nav-text">Buffer转字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断Buffer是否支持编码类型"><span class="nav-number">2.2.</span> <span class="nav-text">判断Buffer是否支持编码类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Buffer的拼接"><span class="nav-number">3.</span> <span class="nav-text">Buffer的拼接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Buffer与性能"><span class="nav-number">4.</span> <span class="nav-text">Buffer与性能</span></a></li></ol></div>
             
 
           </div>
