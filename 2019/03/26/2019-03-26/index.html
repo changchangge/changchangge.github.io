@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="V8,">
+  <meta name="keywords" content="NodeJS,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="V8的垃圾回收机制与内存限制process.memoryUsage()方法返回Node.js进程的内存使用情况的对象，该对象每个属性值的单位为字节。 V8的垃圾回收机制1.V8的垃圾回收算法  V8的内存分代V8，主要讲内存分为新生代和老生代两代。V8堆的整体大小就是新生代所用内存空间加上老生代的内存空间。启动时（不会动态分配），可以使用–max-new-space-size设置新生代内存空间的大">
-<meta name="keywords" content="V8">
+<meta name="description" content="异步I/O的实现现状异步I/O与非阻塞I/O阻塞I/O和非阻塞I/O。阻塞I/O：一定要等到系统内核层面完成所有操作后，调用才结束。会造成CPU的处理能力不能充分使用。非阻塞I/O：直接返回，性能提升明显；但是不带数据返回。轮训的演变：read：I/O状态进行判断。select：文件描述符状态进行判断，最多检查1024个文件的描述符poll：对select改进，采用链表。epoll：在进入轮询时如">
+<meta name="keywords" content="NodeJS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="内存控制">
-<meta property="og:url" content="http://yoursite.com/2019/03/17/2019-03-17(1)/index.html">
+<meta property="og:title" content="异步I&#x2F;O">
+<meta property="og:url" content="http://yoursite.com/2019/03/26/2019-03-26/index.html">
 <meta property="og:site_name" content="厂厂的博客">
-<meta property="og:description" content="V8的垃圾回收机制与内存限制process.memoryUsage()方法返回Node.js进程的内存使用情况的对象，该对象每个属性值的单位为字节。 V8的垃圾回收机制1.V8的垃圾回收算法  V8的内存分代V8，主要讲内存分为新生代和老生代两代。V8堆的整体大小就是新生代所用内存空间加上老生代的内存空间。启动时（不会动态分配），可以使用–max-new-space-size设置新生代内存空间的大">
+<meta property="og:description" content="异步I/O的实现现状异步I/O与非阻塞I/O阻塞I/O和非阻塞I/O。阻塞I/O：一定要等到系统内核层面完成所有操作后，调用才结束。会造成CPU的处理能力不能充分使用。非阻塞I/O：直接返回，性能提升明显；但是不带数据返回。轮训的演变：read：I/O状态进行判断。select：文件描述符状态进行判断，最多检查1024个文件的描述符poll：对select改进，采用链表。epoll：在进入轮询时如">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-17T15:39:13.992Z">
+<meta property="og:updated_time" content="2019-03-26T15:40:44.778Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="内存控制">
-<meta name="twitter:description" content="V8的垃圾回收机制与内存限制process.memoryUsage()方法返回Node.js进程的内存使用情况的对象，该对象每个属性值的单位为字节。 V8的垃圾回收机制1.V8的垃圾回收算法  V8的内存分代V8，主要讲内存分为新生代和老生代两代。V8堆的整体大小就是新生代所用内存空间加上老生代的内存空间。启动时（不会动态分配），可以使用–max-new-space-size设置新生代内存空间的大">
+<meta name="twitter:title" content="异步I&#x2F;O">
+<meta name="twitter:description" content="异步I/O的实现现状异步I/O与非阻塞I/O阻塞I/O和非阻塞I/O。阻塞I/O：一定要等到系统内核层面完成所有操作后，调用才结束。会造成CPU的处理能力不能充分使用。非阻塞I/O：直接返回，性能提升明显；但是不带数据返回。轮训的演变：read：I/O状态进行判断。select：文件描述符状态进行判断，最多检查1024个文件的描述符poll：对select改进，采用链表。epoll：在进入轮询时如">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/17/2019-03-17(1)/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/26/2019-03-26/">
 
 
 
 
 
-  <title>内存控制 | 厂厂的博客</title>
+  <title>异步I/O | 厂厂的博客</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/17/2019-03-17(1)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/26/2019-03-26/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="changchang">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">内存控制</h1>
+          <h1 class="post-title" itemprop="name headline">异步I/O</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-17T11:30:03+08:00">
-                2019-03-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-26T11:40:40+08:00">
+                2019-03-26
               </time>
             
 
@@ -352,19 +352,9 @@
       
 
       
-        <h3 id="V8的垃圾回收机制与内存限制"><a href="#V8的垃圾回收机制与内存限制" class="headerlink" title="V8的垃圾回收机制与内存限制"></a>V8的垃圾回收机制与内存限制</h3><p>process.memoryUsage()方法返回Node.js进程的内存使用情况的对象，该对象每个属性值的单位为字节。</p>
-<h4 id="V8的垃圾回收机制"><a href="#V8的垃圾回收机制" class="headerlink" title="V8的垃圾回收机制"></a>V8的垃圾回收机制</h4><p>1.V8的垃圾回收算法</p>
-<ul>
-<li>V8的内存分代<br>V8，主要讲内存分为新生代和老生代两代。V8堆的整体大小就是新生代所用内存空间加上老生代的内存空间。<br>启动时（不会动态分配），可以使用–max-new-space-size设置新生代内存空间的大小， –max-old-space-size设置老生代内存空间的大小。<br>老生代的设置在64位系统之下为1400MB，在32位系统下为700MB。<br>新生代的设置在64位系统之下为32MB，在32位系统下为6MB。</li>
-<li>Scavenge算法<br>Scavenge算法主要采用了Cheney算法。<br>Cheney算法是一种采用复制的方式实现的垃圾回收算法。它将堆内存一分为二，每一部分空间称为semispace。在这两个semispace空间中，只有一个处于使用中，另一个处于闲置状态。处于使用状态的称为From空间，处于闲置状态的称为To空间。当我们分配对象时，先在From空间中分配。当开始进行垃圾回收时，会检查From空间中的存活对象，这些存活对象将被复制到To空间中，而非存活对象占用的空间将被释放。完成复制后，From空间和To空间角色发生对换。<br>当一个对象经过多次复制依然存活时，它将会被认为是生命周期较长的对象。会被移动到老生代中，采用新的算法进行管理。（晋升）<br>晋升的条件：①对象是否经历过Scavenge算法；②To空间的内存占用比超过限制。</li>
-<li>Mark-Sweep&amp;Mark-Compact<br>Mark-Sweep：在标记阶段遍历堆中所有的对象，并标记获得对象，在随后的清楚阶段中，只清除没有被标记的对象。<br>缺点：进行一次标记清除后，内存空间会出现不连续的状态。<br>Mark-Compact：在整理的过程中，将活的对象往一端移动，移动完成后，直接清除掉边界外的内存。</li>
-<li>Incremental Marking<br>为了避免全停顿。V8从标记阶段入手，将原本要一口气停顿完成的动作改为增量标记。垃圾回收与应用逻辑交替执行直至标记阶段完成。<h5 id="回收日志"><a href="#回收日志" class="headerlink" title="回收日志"></a>回收日志</h5>node –trace_gc<h3 id="高效使用内存"><a href="#高效使用内存" class="headerlink" title="高效使用内存"></a>高效使用内存</h3></li>
-<li>作用域</li>
-<li>闭包<h3 id="内存指标"><a href="#内存指标" class="headerlink" title="内存指标"></a>内存指标</h3></li>
-<li>process.memoryUsage()</li>
-<li>os.totalmem()</li>
-<li>os.freemem()</li>
-</ul>
+        <h3 id="异步I-O的实现现状"><a href="#异步I-O的实现现状" class="headerlink" title="异步I/O的实现现状"></a>异步I/O的实现现状</h3><h4 id="异步I-O与非阻塞I-O"><a href="#异步I-O与非阻塞I-O" class="headerlink" title="异步I/O与非阻塞I/O"></a>异步I/O与非阻塞I/O</h4><p>阻塞I/O和非阻塞I/O。<br>阻塞I/O：一定要等到系统内核层面完成所有操作后，调用才结束。<br>会造成CPU的处理能力不能充分使用。<br>非阻塞I/O：直接返回，性能提升明显；<br>但是不带数据返回。<br>轮训的演变：<br>read：I/O状态进行判断。<br>select：文件描述符状态进行判断，最多检查1024个文件的描述符<br>poll：对select改进，采用链表。<br>epoll：在进入轮询时如果没有检查到I/O时间，将会进入休眠，直到事件将它唤醒。<br>Node：线程池原理。<br>NodeJS是单线程：只是JavaScript执行在单线程总，在Node中，无论是*nix还是Windows平台，内部完成I/O的另有线程池。</p>
+<h4 id="Node中的异步I-O"><a href="#Node中的异步I-O" class="headerlink" title="Node中的异步I/O"></a>Node中的异步I/O</h4><p>完整实现整个异步I/O环节的有事件循环、观察者模式和请求对象。</p>
+<h5 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h5><h5 id="观察者"><a href="#观察者" class="headerlink" title="观察者"></a>观察者</h5><h5 id="请求对象"><a href="#请求对象" class="headerlink" title="请求对象"></a>请求对象</h5><h5 id="执行回调"><a href="#执行回调" class="headerlink" title="执行回调"></a>执行回调</h5><h5 id="非I-O的异步API"><a href="#非I-O的异步API" class="headerlink" title="非I/O的异步API"></a>非I/O的异步API</h5><p>setTimeout()、setInterval()、setImmediate()、process.nextTick()<br>setTimeout()、setInterval()：使用红黑树，创建定时器和迭代<br>process.nextTick()：idle观察者：直接把回调放入队列中，在下一个tick执行。<br>setImmediate()：check观察者。类似于process.nextTick()</p>
 
       
       <div>
@@ -391,7 +381,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/V8/" rel="tag"><i class="fa fa-tag"> V8</i></a>
+            <a href="/tags/NodeJS/" rel="tag"><i class="fa fa-tag"> NodeJS</i></a>
           
         </div>
       
@@ -404,8 +394,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/17/2019-03-21/" rel="next" title="理解Buffer">
-                <i class="fa fa-chevron-left"></i> 理解Buffer
+              <a href="/2019/03/17/2019-03-17(1)/" rel="next" title="内存控制">
+                <i class="fa fa-chevron-left"></i> 内存控制
               </a>
             
           </div>
@@ -413,10 +403,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/26/2019-03-26/" rel="prev" title="异步I/O">
-                异步I/O <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -560,7 +546,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#V8的垃圾回收机制与内存限制"><span class="nav-number">1.</span> <span class="nav-text">V8的垃圾回收机制与内存限制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#V8的垃圾回收机制"><span class="nav-number">1.1.</span> <span class="nav-text">V8的垃圾回收机制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#回收日志"><span class="nav-number">1.1.1.</span> <span class="nav-text">回收日志</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高效使用内存"><span class="nav-number">2.</span> <span class="nav-text">高效使用内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存指标"><span class="nav-number">3.</span> <span class="nav-text">内存指标</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#异步I-O的实现现状"><span class="nav-number">1.</span> <span class="nav-text">异步I/O的实现现状</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#异步I-O与非阻塞I-O"><span class="nav-number">1.1.</span> <span class="nav-text">异步I/O与非阻塞I/O</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Node中的异步I-O"><span class="nav-number">1.2.</span> <span class="nav-text">Node中的异步I/O</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#事件循环"><span class="nav-number">1.2.1.</span> <span class="nav-text">事件循环</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#观察者"><span class="nav-number">1.2.2.</span> <span class="nav-text">观察者</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#请求对象"><span class="nav-number">1.2.3.</span> <span class="nav-text">请求对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#执行回调"><span class="nav-number">1.2.4.</span> <span class="nav-text">执行回调</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#非I-O的异步API"><span class="nav-number">1.2.5.</span> <span class="nav-text">非I/O的异步API</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
